@@ -14,8 +14,8 @@
 
   <script type="text/javascript">
 		Ext.Loader.setConfig({enabled:true});
-    Ext.onReady(function(){
-			var jsApiReporter;
+    var jsApiReporter;
+    (function() {
       var jasmineEnv = jasmine.getEnv();
 
       jsApiReporter = new jasmine.JsApiReporter();
@@ -34,9 +34,14 @@
         if (currentWindowOnload) {
           currentWindowOnload();
         }
-        	jasmineEnv.execute();
-      	};
-    });
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
   </script>
 
   <% js_files.each do |js_file| %>
